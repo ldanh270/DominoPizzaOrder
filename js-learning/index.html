@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Đặt món</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <section class="title">
+                <h1>ĐẶT MÓN</h1>
+            </section>
+            <section class="content">
+                <div class="name-box">
+                    <label class="name introduce" for="fullName">Họ và tên</label>
+                    <br />
+                    <input class="name field" type="text" name="fullName" id="fullName" placeholder="   Họ và tên của bạn" />
+                </div>
+
+                <div class="mail-box">
+                    <label class="mail introduce" for="mail">Email</label>
+                    <br />
+                    <input class="mail field" type="text" id="mail" name="mail" placeholder="   Email của bạn" />
+                </div>
+
+                <div class="phone-box">
+                    <label class="phone introduce" for="phone">Số điện thoại</label>
+                    <br />
+                    <input class="phone field" type="tel" id="phone" name="phone" placeholder="   Số điện thoại của bạn" />
+                </div>
+
+                <div class="address-box">
+                    <label class="address introduce" for="address">Địa chỉ</label>
+                    <br />
+                    <input class="address field" type="text" id="address" name="address" placeholder="   Địa chỉ của bạn" />
+                </div>
+
+                <div class="product-box">
+                    <label class="product introduce" for="product">Món ăn</label>
+                    <br />
+                    <div class="product-options">
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 1" /> Món ăn 1 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 2" /> Món ăn 2 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 3" /> Món ăn 3 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 4" /> Món ăn 4 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 5" /> Món ăn 5 </label>
+                    </div>
+                </div>
+                <div class="note-box">
+                    <label class="note introduce" for="note">Ghi chú</label>
+                    <br />
+                    <input class="note field" type="text" id="note" name="note" placeholder="   Ghi chú của bạn" />
+                </div>
+                <div class="btns">
+                    <button id="submit" class="submit-btn btn">Đặt món ngay</button>
+                    <button class="reset-btn btn">Hủy bỏ</button>
+                </div>
+            </section>
+        </div>
+        <script src="./main.js"></script>
+    </body>
+</html>
