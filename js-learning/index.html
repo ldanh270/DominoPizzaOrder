@@ -150,7 +150,7 @@
                 var selectedProducts = ""
                 for (var i = 0; i < checkbox.length; i++) {
                     if (checkbox[i].checked === true) {
-                        selectedProducts += " [" + checkbox[i].value + "]"
+                        selectedProducts += checkbox[i].value
                     }
                 }
                 if (fullName.value && mail.value && phone.value && address.value) {
@@ -191,6 +191,8 @@
                     .then((response) => response.text())
                     .then((result) => {
                         console.log(result)
+
+                        //Print success
                         const noticeSuccess = document.querySelector(".notice")
                         noticeSuccess.classList.remove("none")
                     })
