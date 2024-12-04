@@ -59,6 +59,12 @@
                 width: 100px;
                 height: 35px;
             }
+            .notice {
+                color: red;
+            }
+            .none {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -95,11 +101,11 @@
                     <label class="product introduce" for="product">Món ăn</label>
                     <br />
                     <div class="product-options">
-                        <label class="checkbox-description"> <input class="checkbox-choice" type="checkbox" name="product" value="Món ăn 1" /> Món ăn 1 </label>
-                        <label class="checkbox-description"> <input class="checkbox-choice" type="checkbox" name="product" value="Món ăn 2" /> Món ăn 2 </label>
-                        <label class="checkbox-description"> <input class="checkbox-choice" type="checkbox" name="product" value="Món ăn 3" /> Món ăn 3 </label>
-                        <label class="checkbox-description"> <input class="checkbox-choice" type="checkbox" name="product" value="Món ăn 4" /> Món ăn 4 </label>
-                        <label class="checkbox-description"> <input class="checkbox-choice" type="checkbox" name="product" value="Món ăn 5" /> Món ăn 5 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 1" /> Món ăn 1 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 2" /> Món ăn 2 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 3" /> Món ăn 3 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 4" /> Món ăn 4 </label>
+                        <label class="checkbox-description"> <input type="checkbox" name="product" value="Món ăn 5" /> Món ăn 5 </label>
                     </div>
                 </div>
                 <div class="note-box">
@@ -111,6 +117,7 @@
                     <button id="submit" class="submit-btn btn">Đặt món ngay</button>
                     <button class="reset-btn btn">Hủy bỏ</button>
                 </div>
+                <span class="notice none">Đã đặt món thành công!</span>
             </section>
         </div>
         <!-- <script src="./main.js"></script> -->
@@ -120,21 +127,25 @@
             const mail = document.getElementById("mail")
             const phone = document.getElementById("phone")
             const address = document.getElementById("address")
-            // const selectedProducts = Array.from(document.querySelectorAll(".product-options input[name=product]:checked")).map((checkbox) => checkbox.value)
-            const selectedProducts = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map((checkbox) => checkbox.value)
-            // console.log(selectedProducts)
             const note = document.getElementById("note")
             const submit = document.getElementById("submit")
 
             //Submit button onClick event
             submit.addEventListener("click", () => {
+                var checkbox = document.getElementsByName("product")
+                var selectedProducts = ""
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].checked === true) {
+                        selectedProducts += " [" + checkbox[i].value + "]"
+                    }
+                }
                 if (fullName.value && mail.value && phone.value && address.value) {
                     const data = {
                         name: fullName.value,
                         mail: mail.value,
                         phone: phone.value,
                         address: address.value,
-                        product: selectedProducts.join(", "),
+                        product: selectedProducts,
                         note: note.value,
                     }
                     postData(data)
@@ -164,7 +175,11 @@
 
                 fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSc589AvQ9pFa-rzgtMkwfmxPCCLRCTh6ukTWPplJK_SBMtZzQ/formResponse", requestOptions)
                     .then((response) => response.text())
-                    .then((result) => console.log(result))
+                    .then((result) => {
+                        console.log(result)
+                        const noticeSuccess = document.querySelector(".notice")
+                        noticeSuccess.classList.remove("none")
+                    })
             }
         </script>
     </body>
