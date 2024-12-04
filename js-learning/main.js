@@ -39,8 +39,9 @@ async function postData(data) {
 
     const requestOptions = {
         method: "POST",
-        body: formdata,
+        body: formData,
         redirect: "follow",
+        mode: "no-cors",
     }
 
     fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSc589AvQ9pFa-rzgtMkwfmxPCCLRCTh6ukTWPplJK_SBMtZzQ/formResponse", requestOptions)
