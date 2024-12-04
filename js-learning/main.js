@@ -24,8 +24,9 @@ submit.addEventListener("click", () => {
     }
 })
 
-//Post data to seve
+//Post data to save
 async function postData(data) {
+    //Get data form input form
     const formData = new FormData()
     formData.append("entry.370398972", data.name)
     formData.append("entry.999350632", data.mail)
@@ -33,11 +34,16 @@ async function postData(data) {
     formData.append("entry.1994028706", data.address)
     formData.append("entry.214818534", data.product)
     formData.append("entry.1547702337", data.note)
-    fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSc589AvQ9pFa-rzgtMkwfmxPCCLRCTh6ukTWPplJK_SBMtZzQ/formResponse"),
-        {
-            method: "POST",
-            body: formData,
-            mode: "no-cors",
-        }
-    alert("Đặt món thành công!")
+
+    //Send data to server
+
+    const requestOptions = {
+        method: "POST",
+        body: formdata,
+        redirect: "follow",
+    }
+
+    fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSc589AvQ9pFa-rzgtMkwfmxPCCLRCTh6ukTWPplJK_SBMtZzQ/formResponse", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
 }
