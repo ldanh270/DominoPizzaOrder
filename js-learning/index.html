@@ -12,6 +12,10 @@
                 padding: 0;
                 margin: 0;
                 border: 0;
+                color: #ffffff;
+            }
+            body {
+                background-color: #005075;
             }
             .container {
                 margin: 0 auto;
@@ -19,15 +23,16 @@
                 height: auto;
             }
             .title {
-                background-color: #005075;
+                background-color: #00a779;
                 display: flex;
+                border-radius: 20px;
                 justify-content: center;
                 padding: 15px;
-                color: white;
+                color: #fff;
             }
             .content {
                 margin: 10px 80px;
-                border: #005075 solid 1px;
+                border: #00a779 solid 1px;
                 border-radius: 10px;
                 padding: 20px 30px;
             }
@@ -40,6 +45,7 @@
                 width: 100%;
                 height: 30px;
                 margin: 10px 0px;
+                color: black;
             }
             .product-options {
                 margin: 10px;
@@ -53,11 +59,19 @@
                 gap: 10px;
             }
             .btn {
-                background-color: #005075;
                 border-radius: 10px;
                 color: #fff;
                 width: 100px;
                 height: 35px;
+            }
+            .submit-btn {
+                background-color: #04bb87;
+            }
+            .cancel-btn {
+                background-color: rgb(241, 52, 52);
+            }
+            .cancel-btn a {
+                text-decoration: none;
             }
             .notice {
                 color: red;
@@ -115,7 +129,7 @@
                 </div>
                 <div class="btns">
                     <button id="submit" class="submit-btn btn">Đặt món ngay</button>
-                    <button class="reset-btn btn">Hủy bỏ</button>
+                    <button class="cancel-btn btn"><a href="https://sites.google.com/view/dominopizza567/trang-ch%E1%BB%A7?authuser=0">Trở lại</a></button>
                 </div>
                 <span class="notice none">Đã đặt món thành công!</span>
             </section>
