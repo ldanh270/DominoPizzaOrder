@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Đặt món</title>
         <!-- <link rel="stylesheet" href="./styles.css" /> -->
-
         <style>
             * {
                 box-sizing: border-box;
@@ -67,8 +66,14 @@
             .submit-btn {
                 background-color: #04bb87;
             }
+            .submit-btn:hover {
+                background-color: #04dfa1;
+            }
             .cancel-btn {
                 background-color: rgb(241, 52, 52);
+            }
+            .cancel-btn:hover {
+                background-color: rgb(194, 0, 0);
             }
             .cancel-btn a {
                 text-decoration: none;
@@ -86,7 +91,7 @@
             <section class="title">
                 <h1>ĐẶT MÓN</h1>
             </section>
-            <section class="content">
+            <form class="content">
                 <div class="name-box">
                     <label class="name introduce" for="fullName">Họ và tên</label>
                     <br />
@@ -96,7 +101,7 @@
                 <div class="mail-box">
                     <label class="mail introduce" for="mail">Email</label>
                     <br />
-                    <input class="mail field" type="text" id="mail" name="mail" placeholder="   Email của bạn" />
+                    <input class="mail field" type="email" id="mail" name="mail" placeholder="   Email của bạn" />
                 </div>
 
                 <div class="phone-box">
@@ -128,15 +133,15 @@
                     <input class="note field" type="text" id="note" name="note" placeholder="   Ghi chú của bạn" />
                 </div>
                 <div class="btns">
-                    <button id="submit" class="submit-btn btn">Đặt món ngay</button>
+                    <button type="submit" id="submit" class="submit-btn btn">Đặt món ngay</button>
                     <button class="cancel-btn btn"><a href="https://sites.google.com/view/dominopizza567/trang-ch%E1%BB%A7?authuser=0">Trở lại</a></button>
                 </div>
-                <span class="notice none">Đã đặt món thành công!</span>
-            </section>
+                <span class="notice require none">Vui lòng nhập đầy đủ thông tin!</span>
+                <span class="notice success none">Đã đặt món thành công!</span>
+            </form>
         </div>
         <!-- <script src="./main.js"></script> -->
         <script>
-            //Set variable values
             const fullName = document.getElementById("fullName")
             const mail = document.getElementById("mail")
             const phone = document.getElementById("phone")
@@ -144,31 +149,39 @@
             const note = document.getElementById("note")
             const submit = document.getElementById("submit")
 
-            //Submit button onClick event
-            submit.addEventListener("click", () => {
-                var checkbox = document.getElementsByName("product")
-                var selectedProducts = ""
-                for (var i = 0; i < checkbox.length; i++) {
-                    if (checkbox[i].checked === true) {
-                        selectedProducts += checkbox[i].value
-                    }
-                }
-                if (fullName.value && mail.value && phone.value && address.value) {
+            submit.addEventListener("click", (event) => {
+                event.preventDefault()
+                let productValue = getCheckedProducts()
+                if (fullName.value && mail.value && phone.value && address.value && productValue) {
                     const data = {
                         name: fullName.value,
                         mail: mail.value,
                         phone: phone.value,
                         address: address.value,
-                        product: selectedProducts,
+                        product: productValue,
                         note: note.value,
                     }
                     postData(data)
                 } else {
-                    alert("Vui lòng điền đầy đủ thông tin!")
+                    noticeRequire()
                 }
             })
+            function getCheckedProducts() {
+                const checkbox = document.getElementsByName("product")
+                var selectedProducts = ""
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].checked === true) {
+                        selectedProducts += " " + checkbox[i].value + " "
+                    }
+                }
+                return selectedProducts
+            }
 
-            //Post data to save
+            function noticeRequire() {
+                const noticeRequire = document.querySelector(".require")
+                noticeRequire.classList.remove("none")
+            }
+
             async function postData(data) {
                 //Get data form input form
                 const formData = new FormData()
@@ -191,11 +204,14 @@
                     .then((response) => response.text())
                     .then((result) => {
                         console.log(result)
-
-                        //Print success
-                        const noticeSuccess = document.querySelector(".notice")
-                        noticeSuccess.classList.remove("none")
+                        noticeSuccess()
                     })
+            }
+            function noticeSuccess() {
+                const noticeSuccess = document.querySelector(".success")
+                noticeSuccess.classList.remove("none")
+                const noticeRequire = document.querySelector(".require")
+                noticeRequire.classList.add("none")
             }
         </script>
     </body>
